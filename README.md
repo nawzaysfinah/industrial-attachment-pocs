@@ -1,116 +1,206 @@
 # Industrial Attachment POCs
 
-`Industrial Attachment POCs` is a local desktop-style web app that helps you turn messy SME field notes into a structured AI POC recommendation report.
+## What Is This Project?
 
-It is built for internship/industrial attachment use: you interview or observe a company, capture their pain points, and the tool helps you produce a consultant-style report with realistic, buildable POC ideas.
+**Industrial Attachment POCs** is a local AI-powered tool that helps turn real company problems into structured, realistic AI Proof of Concepts (POCs) that can then become meaningful internships for students.
 
-## In plain English: what this tool does
+In simple terms:
 
-You give the app:
+> It helps me talk to companies, understand their real operational problems, and design practical AI solutions that students can build safely and realistically.
 
-- basic company information
-- pain points and priorities
-- tools/data the company already uses
-- optional files (PDF/DOCX/TXT notes)
-- optional website links for context
+Instead of sending students into companies blindly, this tool allows us to:
 
-The app then:
+1. Understand the company properly.
+2. Identify where AI can genuinely help.
+3. Build a small prototype in school first.
+4. Deploy students only after the idea is validated.
 
-- extracts and stores all that information locally
-- uses a local AI model (Ollama) to generate a detailed markdown report
-- scores feasibility (can this be built in 6-8 weeks by a student?)
-- suggests only 1-2 high-value POCs in depth
-- cites web sources when claims come from online research
+This reduces risk for companies and improves the quality of internships for students.
 
-## Why this exists
+## Why This Exists
 
-Most internship AI proposals fail because they are too big, too vague, or disconnected from real operational pain.
+Many SMEs (small and medium-sized enterprises):
 
-This app is designed to enforce practical thinking:
+- have messy workflows
+- use Excel as a database
+- handle repetitive tasks manually
+- struggle with documentation and knowledge management
+- are curious about AI but do not know where to start
 
-- narrow scope
-- check data reality
-- stress-test feasibility
-- produce a pitch that is credible to SME owners
+At the same time, students:
 
-It explicitly frames proposals as:
-`POC built in-school first to de-risk`
+- can code in Python
+- can clean and analyse data
+- can build dashboards and simple AI tools
+- cannot safely build large, mission-critical systems on their own
 
-## Local-first privacy model
+This tool bridges that gap.
 
-This project is intentionally local-first:
+It helps match:
 
-- no cloud LLM API keys are required
-- generation and embeddings run via local Ollama models
-- case records are saved in local SQLite
-- uploaded files stay on your machine (`./data/uploads`)
+- real business problems
+- with realistic student capabilities
+- in a structured, low-risk way
 
-Optional web research is fetched directly from URLs you provide, then cached locally to reduce repeated calls.
+## What The App Does
 
-## Who this is for
+The app works like a guided consultant.
 
-- students doing industrial attachment / internship projects
-- lecturers/supervisors guiding practical AI adoption
-- solo consultants scoping lightweight SME AI pilots
+You enter:
 
-## Main screens
+- industry type
+- company description
+- pain points
+- tools they use
+- observations from site visits
+- ethnographic notes (documents, PDFs, etc.)
+- optional online research links
 
-- `/` Dashboard
-  - list all cases
-  - start a new case
-  - run cross-case search (GraphRAG)
-- `/cases/new` Wizard
-  - guided 7-step intake (not one giant form)
-- `/cases/[id]` Case detail
-  - review all inputs and sources
-  - regenerate report or pitch
-  - export markdown for Notion
-  - mark POCs as validated
+The system then:
 
-## What the generated report contains
+1. Breaks down the company’s operations.
+2. Identifies realistic AI opportunities.
+3. Designs 1-2 practical POCs.
+4. Stress-tests whether students can actually build them.
+5. Generates a structured report.
+6. Suggests how this becomes an internship role.
+7. Produces a pitch message for the company.
 
-Each report includes:
+All of this runs locally using Ollama as the AI engine.
 
-1. Executive Summary
-2. Industry Deconstruction
-3. AI Opportunity Map (ranked)
-4. POC Design (top 1-2 only)
-5. Feasibility Stress Test
-6. Internship Conversion Plan
-7. Collaboration Strategy
-8. Sources
+No external LLM APIs are required.
 
-Feasibility is scored numerically across capability, data, risk, timeline, demo potential, and extension potential.  
-If the score is too low, the recommendation is automatically narrowed/redesigned.
+## The Core Philosophy
 
-## Quick start (first-time setup)
+### 1. Build in School First
 
-1. Install Node dependencies:
+Every POC is designed to be:
+
+- prototyped during curriculum time
+- demonstrated in a 5-minute showcase
+- validated by the company
+- only then extended during internship
+
+This de-risks the collaboration.
+
+The company sees something real before committing to hosting interns.
+
+### 2. Be Pragmatic, Not Flashy
+
+This tool does not suggest:
+
+- overly complex AI systems
+- infrastructure-heavy deployments
+- unrealistic “AI transformation” ideas
+
+Instead, it focuses on:
+
+- workflow automation
+- data cleaning and dashboarding
+- simple ML models
+- knowledge assistants
+- process improvements
+
+Things SMEs actually care about.
+
+### 3. Every POC Must Be Feasible
+
+Each proposed solution is scored on:
+
+- student capability fit
+- data availability
+- risk level
+- time to MVP
+- demo-ability
+- internship extension potential
+
+If it does not pass the feasibility gate, it gets redesigned or rejected.
+
+## GraphRAG and Case Memory
+
+The system stores each company as a case record.
+
+Over time, it builds:
+
+- a knowledge graph of industries, pain points, tools, and POCs
+- a searchable archive of past collaborations
+- cross-case insights (for example: “What problems do logistics SMEs usually have?”)
+
+This allows smarter recommendations over time.
+
+The more cases entered, the stronger the system becomes.
+
+## Who This Is For
+
+This tool is built for:
+
+- Industrial Attachment Coordinators
+- AI lecturers
+- educators designing industry-linked projects
+- anyone building structured SME-AI collaborations
+
+Currently, it is designed for single-user use and runs locally.
+
+## What This Is Not
+
+This is not:
+
+- a general chatbot
+- a business plan generator
+- a full enterprise AI consulting platform
+- a student project idea randomizer
+
+It is a **structured AI collaboration engine** designed specifically to convert SME pain points into validated, student-buildable AI projects.
+
+## Long-Term Vision
+
+Over time, this system helps:
+
+- standardise how AI POCs are designed for SMEs
+- improve internship quality
+- build long-term industry partnerships
+- position the institution as an AI experimentation lab
+- create repeatable, scalable collaboration models
+
+Instead of finding internships reactively, this creates them strategically.
+
+## Technical Overview (High-Level)
+
+- Built with Next.js (local web app)
+- Uses Ollama for local AI generation and embeddings
+- Stores case data in SQLite
+- Supports document uploads and web research
+- Implements GraphRAG for cross-case intelligence
+- Outputs structured reports in Markdown
+
+## How To Run This App Locally
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Create local env file:
+2. Create local environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Start Ollama (in a separate terminal):
+3. Start Ollama in a separate terminal:
 
 ```bash
 ollama serve
 ```
 
-4. Pull required local models:
+4. Pull required models:
 
 ```bash
 ollama pull qwen3:latest
 ollama pull nomic-embed-text:latest
 ```
 
-5. Initialize local database:
+5. Initialize SQLite:
 
 ```bash
 npm run db:migrate
@@ -126,68 +216,26 @@ npm run dev
 
 `http://localhost:3000`
 
-## How to use (end-to-end)
+## Basic Usage Flow
 
-1. Click `+ New Case`.
-2. Complete all wizard steps:
-   - company profile
-   - pains and priorities
-   - observations + uploads
-   - optional web links
-3. Click `Generate`.
-4. Review the report and feasibility gate results.
-5. Copy markdown or export `.md` into Notion.
-6. Use dashboard search to compare patterns across past cases.
+1. Go to `+ New Case`.
+2. Fill in company details and pain points.
+3. Upload notes and optional web links.
+4. Generate the report.
+5. Review feasibility gate results.
+6. Export markdown to Notion and share with company stakeholders.
 
-## Cross-case intelligence (GraphRAG)
+## Final Summary
 
-As cases are saved, the app builds:
+Industrial Attachment POCs is a practical AI consulting assistant that:
 
-- graph nodes (company, pain points, tools, POCs)
-- graph edges (relationships between those entities)
-- vector embeddings for text chunks
+- understands SMEs
+- designs realistic AI experiments
+- protects companies from risk
+- protects students from overreach
+- turns prototypes into internships
+- builds long-term collaboration pipelines
 
-When you search, it:
+It is not about hype.
 
-1. embeds your query
-2. finds similar chunks
-3. expands related graph entities
-4. generates a structured cross-case answer
-
-This helps answer questions like:
-
-`Show me similar pains from other SMEs and what POCs we proposed`
-
-## Tech stack (for developers)
-
-- Next.js App Router + TypeScript + Tailwind CSS
-- SQLite (`better-sqlite3`)
-- Ollama (chat + embeddings)
-- Zod schema validation
-- `pdf-parse`, `mammoth` for file text extraction
-- `@mozilla/readability` + `jsdom` + `cheerio` for web extraction
-
-## Useful scripts
-
-- `npm run dev` - start local dev server
-- `npm run build` - production build check
-- `npm run lint` - lint checks
-- `npm run db:migrate` - apply SQLite migrations
-- `npm run db:reset` - reset DB and re-run migrations
-
-## Troubleshooting
-
-- `Ollama not reachable`:
-  - make sure `ollama serve` is running
-  - check `.env` `OLLAMA_HOST` value
-- `Model not found`:
-  - run `ollama pull qwen3:latest`
-  - run `ollama pull nomic-embed-text:latest`
-- `No report output`:
-  - check Ollama terminal logs
-  - ensure at least one clear pain point is filled in wizard step 4
-
-## Project status
-
-This is a practical POC builder focused on speed, realism, and explainability over “perfect AI magic.”  
-It is meant to help you propose de-risked, internship-ready AI pilots that can become real collaborations.
+It is about structured, repeatable, real-world AI adoption: starting small and growing sustainably.
