@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f8f5;
+  --bg-alt: #eef2eb;
+  --card: #ffffff;
+  --ink: #122b28;
+  --muted: #4d6764;
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --danger: #9f1239;
+  --border: #d0d9d2;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-space-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 8%, #d4ede3 0%, transparent 40%),
+    radial-gradient(circle at 92% 20%, #fae7cb 0%, transparent 34%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+textarea,
+input,
+select {
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.58rem 0.72rem;
+  background: #fff;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #2dd4bf;
+  outline-offset: 1px;
+}
+
+.ops-card {
+  background: color-mix(in srgb, var(--card) 92%, #ffffff 8%);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  box-shadow: 0 14px 36px -30px rgba(7, 37, 34, 0.7);
+}
+
+.ops-btn {
+  border: 1px solid var(--accent);
+  background: linear-gradient(180deg, #14b8a6, #0f766e);
+  color: #ffffff;
+  border-radius: 0.62rem;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.ops-btn:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.ops-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.ops-btn-secondary {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--ink);
+  border-radius: 0.62rem;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-pill {
+  font-family: var(--font-space-mono);
+  display: inline-block;
+  font-size: 0.74rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  background: #e7f7f4;
+  color: #0f766e;
+  border: 1px solid #b5e8dd;
+}
+
+.report-markdown {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.fade-in {
+  animation: fadeIn 420ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
